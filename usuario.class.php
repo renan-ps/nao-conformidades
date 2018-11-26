@@ -8,7 +8,7 @@ class Usuario {
 
 	public function __construct(){}
 
-	//cadastrar Usuário no banco de dados
+	//Cadastrar usuário no banco de dados
 	public function setCadastro($pdo, $usuario, $nome, $email, $cargo, $senha, $setor){
 		$stmt = $pdo->prepare('INSERT INTO usuarios(usuario, nome, email, cargo, senha, idSetor) VALUES (?, ?, ?, ?, ?, ?');
 		$stmt->bindParam(1, $usuario, PDO::PARAM_STR);
@@ -24,6 +24,10 @@ class Usuario {
 		}else{
 			return "Erro no cadastro.";
 		}
-	}
+	
 
-} 
+	} 
+
+}
+
+?>
