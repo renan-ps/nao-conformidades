@@ -1,10 +1,10 @@
 <?php 
 class Usuario { 
-	public $usuario; 
-	public $nome;
-	public $email;
-	public $idSetor;
-	public $cargo;
+	private $usuario; 
+	private $nome;
+	private $email;
+	private $idSetor;
+	private $cargo;
 
 	public function __construct(){}
 
