@@ -4,7 +4,7 @@
 
 		<div class="col-12">
 			<h2 style="margin-bottom: 2%; margin-top: 2%;">Cadastro de funcionário</h2>
-			<form name="cadastrar_usuario" method="POST" action="cadastrar_usuario.php" class="form-horizontal">
+			<form name="cadastrar_usuario" method="POST" action="validar_cadastro_funcionario.php" class="form-horizontal">
 
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="usuario">Nome de usuário:</label>
@@ -23,7 +23,7 @@
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="email">E-mail:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="email" placeholder="E-mail do funcionário" name="email">
+						<input type="email" class="form-control" id="email" placeholder="E-mail do funcionário" name="email">
 					</div>
 				</div>
 
@@ -37,14 +37,14 @@
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="senha">Senha:</label>
 					<div class="col-sm-10">
-						<input type="password" class="form-control" id="senha" placeholder="******" name="senha">
+						<input type="password" class="form-control" id="senha" placeholder="Mínimo 8 caracteres" name="senha">
 					</div>
 				</div>
 
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="csenha">Confirme a senha:</label>
 					<div class="col-sm-10">
-						<input type="password" class="form-control" id="csenha" placeholder="******" name="csenha">
+						<input type="password" class="form-control" id="csenha" placeholder="Mínimo 8 caracteres" name="csenha">
 					</div>
 				</div>
 
@@ -52,9 +52,9 @@
 					<label class="col-sm-2 col-form-label" for="setor">Setor</label>
 					<div class="col-sm-10">
 						<select id="setor" name="setor" class="form-control">
-							<option disabled="disabled" selected>Escolha</option>
+							<option value="n" disabled="disabled" selected>Escolha</option>
 							<?php
-								$consulta = $pdo->query('SELECT * FROM setores');
+								$consulta = $pdo->query('SELECT * FROM setores ORDER BY nome');
 								while ($row = $consulta->fetch(PDO::FETCH_ASSOC)){
 							?>
 
@@ -64,17 +64,79 @@
 					</div>
 				</div>
 
+				<?php
+					if(isset($_SESSION['msg_cad'])){
+						echo $_SESSION['msg_cad'];
+						unset($_SESSION['msg_cad']);
+					}
+				?>
+
 				<div class="form-group">
-				<button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+				<button type="submit" class="btn btn-primary btn-lg btn-block" onClick="return validar()">Cadastrar usuário</button>
 				</div>
 
 			</form>
 		</div>
 	</div>
 
+	<script type="text/javascript">
+		function validar(){
+			var usuario = cadastrar_usuario.usuario.value;
+			var nome = cadastrar_usuario.nome.value;
+			var email = cadastrar_usuario.email.value;
+			var cargo = cadastrar_usuario.cargo.value;
+			var senha = cadastrar_usuario.senha.value;
+			var csenha = cadastrar_usuario.csenha.value;
+			var setor = cadastrar_usuario.setor.value;
 
-	 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-	 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+			if(usuario == "" || usuario.length < 5){
+				alert("Preencha o campo usuário com pelo menos 5 caracteres!");
+				cadastrar_usuario.usuario.focus();
+				return false;
+			}
+
+			if(nome == ""){
+				alert("Preencha o nome do funcionário!");
+				cadastrar_usuario.nome.focus();
+				return false;
+			}
+
+			if(email == ""){
+				alert("Preencha o campo e-mail corretamente!");
+				cadastrar_usuario.email.focus();
+				return false;
+			}
+
+			if(cargo == ""){
+				alert("Preencha o cargo do funcionário!");
+				cadastrar_usuario.cargo.focus();
+				return false;
+			}
+			
+			
+			if(senha == "" || senha.length < 8){
+				alert("Preencha a senha com pelo menos 8 caracteres..");
+				cadastrar_usuario.senha.focus();
+				return false;
+			}
+			
+			if(csenha == "" || csenha != senha){
+				alert("Preencha os campos de senha corretamente.");
+				cadastrar_usuario.senha.focus();
+				return false;
+			}
+
+			if(setor == "n"){
+				alert("Preencha o setor do funcionário.");
+				cadastrar_usuario.setor.focus();
+				return false;
+			}
+		}
+	</script>
+
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   </body>
 </html>
