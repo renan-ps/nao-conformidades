@@ -6,7 +6,7 @@
 		<nav class="menu_index">
 			<ul>
 				<li>
-					<a href="">Abrir não-conformidade</a>
+					<a href="abrir_nao_conformidade.php">Abrir não-conformidade</a>
 				</li>
 				<li>
 					<a href="">Listar não-conformidades</a>
