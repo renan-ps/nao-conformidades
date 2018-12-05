@@ -1,5 +1,6 @@
   <?php
-  include "header.php"
+  include "header.php";
+  
   ?>
 
 		<div class="col-12">
@@ -9,50 +10,71 @@
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="usuario">Nome de usuário:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="usuario" placeholder="Nome de usuário do funcionário" name="usuario">
+						<input 	type="text"
+										class="form-control"
+										id="usuario"
+										placeholder="Nome de usuário do funcionário"
+										name="usuario"
+										required="required"
+										value="<?php ?>" 
+										value="<?php echo $usuario; ?>"
+						/>
+						<?php
+							/* MENSAGEM CASO O NOME ESTEJA INCORRETO */
+							if(isset($_SESSION['msg_cadNomeUser'])){
+								echo $_SESSION['msg_cadNomeUser'];
+								unset($_SESSION['msg_cadNomeUser']);
+							}
+						?>
 					</div>
 				</div>
 			
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="nome">Nome:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="nome" placeholder="Nome completo do funcionário" name="nome">
+						<input 	type="text"
+										class="form-control" 
+										id="nome"
+										placeholder="Nome completo do funcionário"
+										name="nome"
+										required="required"
+
+						/>
 					</div>
 				</div>
 
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="email">E-mail:</label>
 					<div class="col-sm-10">
-						<input type="email" class="form-control" id="email" placeholder="E-mail do funcionário" name="email">
+						<input type="email" class="form-control" id="email" placeholder="E-mail do funcionário" name="email" required="required" >
 					</div>
 				</div>
 
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="cargo">Cargo:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="cargo" placeholder="Ex: Auxiliar administrativo" name="cargo">
+						<input type="text" class="form-control" id="cargo" placeholder="Ex: Auxiliar administrativo" name="cargo" required="required" >
 					</div>
 				</div>
 
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="senha">Senha:</label>
 					<div class="col-sm-10">
-						<input type="password" class="form-control" id="senha" placeholder="Mínimo 8 caracteres" name="senha">
+						<input type="password" class="form-control" id="senha" placeholder="Mínimo 8 caracteres" name="senha" required="required">
 					</div>
 				</div>
 
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="csenha">Confirme a senha:</label>
 					<div class="col-sm-10">
-						<input type="password" class="form-control" id="csenha" placeholder="Mínimo 8 caracteres" name="csenha">
+						<input type="password" class="form-control" id="csenha" placeholder="Mínimo 8 caracteres" name="csenha" required="required">
 					</div>
 				</div>
 
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="setor">Setor</label>
 					<div class="col-sm-10">
-						<select id="setor" name="setor" class="form-control">
-							<option value="n" disabled="disabled" selected>Escolha</option>
+						<select id="setor" name="setor" class="form-control" required="required">
 							<?php
 								$consulta = $pdo->query('SELECT * FROM setores ORDER BY nome');
 								while ($row = $consulta->fetch(PDO::FETCH_ASSOC)){
@@ -64,10 +86,12 @@
 					</div>
 				</div>
 
+				<input type="hidden" id="validador" name="validador" value="1">
+
 				<?php
-					if(isset($_SESSION['msg_cad'])){
-						echo $_SESSION['msg_cad'];
-						unset($_SESSION['msg_cad']);
+					if(isset($_SESSION['msg_cadUser'])){
+						echo $_SESSION['msg_cadUser'];
+						unset($_SESSION['msg_cadUser']);
 					}
 				?>
 
@@ -78,7 +102,7 @@
 			</form>
 		</div>
 	</div>
-
+<!--
 	<script type="text/javascript">
 		function validar(){
 			var usuario = cadastrar_usuario.usuario.value;
@@ -133,10 +157,8 @@
 			}
 		}
 	</script>
+-->
 
-
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  </body>
-</html>
+<?php
+	include "footer.php";
+?>

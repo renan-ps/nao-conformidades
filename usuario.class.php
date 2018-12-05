@@ -24,9 +24,33 @@ class Usuario {
 		}else{
 			return "Erro no cadastro.";
 		}
-	
+	}
 
-	} 
+	public function setVerificarCadastro($pdo, $usuario, $email){
+		$stmt = $pdo->prepare('SELECT * FROM usuarios WHERE usuario = ? OR email = ?');
+		$stmt->bindParam(1, $usuario, PDO::PARAM_STR);
+		$stmt->bindParam(2, $email, PDO::PARAM_STR);
+
+//		$a = $stmt->execute();
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+		echo $row;
+	}
+
+	public function setLogin($pdo, $usuario, $senha){
+		$stmt = $pdo->prepare('SELECT * from usuarios WHERE usuario = ? and senha = ?');
+		$stmt -> bindParam(1, $usuario, PDO::PARAM_STR);
+		$stmt -> bindParam(2, $senha, PDO::PARAM_STR);
+		$stmt -> execute();
+
+		if($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+			return "ok";
+		}
+		else{
+			return "erro";
+		}
+	}
+
+
 
 }
 
