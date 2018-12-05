@@ -1,8 +1,6 @@
 <?php
-	if(!isset($_SESSION)){
-		session_start();
-	}
-	require "conexao.php";
+	include_once "conexao.php";
+	session_start();
 
 ?>
 <!doctype html>
@@ -13,7 +11,9 @@
 
   		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-		<title>Cadastro de Funcionário</title>
+  		<link rel="stylesheet" href="estilo.css">
+
+		<title>Sistema de Gestão de Não Conformidades</title>
 	</head>
 	<body>
 		<div class="container">

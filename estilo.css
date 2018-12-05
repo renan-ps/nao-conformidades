@@ -1,0 +1,18 @@
+.titulo_index{
+	font-size: 20px;
+}
+
+.menu_index{
+	margin-top: 1%;
+}
+
+.menu_index ul li{
+	list-style: none;
+	text-transform: uppercase;
+	margin-left: -23%;
+}
+
+.menu_index ul li a{
+	text-decoration: none;
+	color: #000;
+}

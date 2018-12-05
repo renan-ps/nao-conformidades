@@ -1,5 +1,5 @@
 <?php
-	include "header.php"
+	include "header.php";
 ?>
 		<form class="col-md-3" action="logar.php" method = "post">
 			<div class="form-group">
