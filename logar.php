@@ -12,6 +12,7 @@
 
 	if($usuario->getLogado() == true){
 		$_SESSION['username'] = $usuario->getUsuario();
+		$_SESSION['idUsuario'] = $usuario->getIDUsuario();
 		$_SESSION['nome'] = $usuario->getNome();
 		$_SESSION['setor'] = $usuario->getIDSetor();
 		$_SESSION['cargo'] = $usuario->getCargo();

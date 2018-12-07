@@ -10,8 +10,17 @@
 					<a href="abrir_nao_conformidade.php">Abrir não-conformidade</a>
 				</li>
 				<li>
-					<a href="">Listar não-conformidades</a>
+					<a href="listar_nao_conformidades.php">Listar não-conformidades</a>
 				</li>
+				<?php
+					if($_SESSION['setor'] == 1){
+				?>
+				<li>
+					<a href="cadastrar.php">Cadastrar usuário</a>
+				</li>
+				<?php
+					}
+				?>
 				<li>
 					<a href="logout.php">Logout</a>
 				</li>

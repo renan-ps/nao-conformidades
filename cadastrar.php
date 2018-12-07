@@ -1,6 +1,6 @@
   <?php
   include "header.php";
-  
+  if($_SESSION['setor'] == 1){
   ?>
 
 		<div class="col-12">
@@ -89,9 +89,15 @@
 				<input type="hidden" id="validador" name="validador" value="1">
 
 				<?php
-					if(isset($_SESSION['msg_cadUser'])){
-						echo $_SESSION['msg_cadUser'];
-						unset($_SESSION['msg_cadUser']);
+					if(isset($_SESSION['msg_nome_email'])){
+						echo $_SESSION['msg_nome_email'];
+						unset($_SESSION['msg_nome_email']);
+					}
+				?>
+				<?php
+					if(isset($_SESSION['msg_nome_email'])){
+						echo $_SESSION['msg_nome_email'];
+						unset($_SESSION['msg_nome_email']);
 					}
 				?>
 
@@ -161,4 +167,7 @@
 
 <?php
 	include "footer.php";
+}else{
+	header("Location: index.php");
+}
 ?>

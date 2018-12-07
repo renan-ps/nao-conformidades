@@ -8,7 +8,9 @@ class Usuario {
 	private $cargo;
 	private $logado;
 
-	public function __construct(){}
+	public function __construct(){
+		
+	}
 
 	//Cadastrar usuário no banco de dados
 	public function setCadastro($pdo, $usuario, $nome, $email, $cargo, $senha, $setor){
@@ -29,13 +31,22 @@ class Usuario {
 	}
 
 	public function setVerificarCadastro($pdo, $usuario, $email){
+		
 		$stmt = $pdo->prepare('SELECT * FROM usuarios WHERE usuario = ? OR email = ?');
 		$stmt->bindParam(1, $usuario, PDO::PARAM_STR);
 		$stmt->bindParam(2, $email, PDO::PARAM_STR);
 
-//		$a = $stmt->execute();
-		$row = $stmt->fetch(PDO::FETCH_ASSOC);
-		echo $row;
+		$stmt->execute();
+		/*$a = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		
+		foreach ($a as $row){
+			echo $row['usuario'];
+			echo "</br>";
+		}*/
+	  
+		return $stmt->rowCount();
+
+		
 	}
 
 	public function setLogin($pdo, $usuario, $senha){
@@ -90,6 +101,10 @@ class Usuario {
 	//gets basicos
 	public function getUsuario(){
 		return $this->usuario;
+	}
+
+	public function getIDUsuario(){
+		return $this->idUsuario;
 	}
 
 	public function getNome(){

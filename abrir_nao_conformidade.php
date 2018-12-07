@@ -2,7 +2,7 @@
 	include "header.php";
 ?>
 
-		<form name="abrir_nao_conformidade" method="POST" action="enviar_nao_conformidade.php" style="margin-top: 1%">
+		<form name="abrir_nao_conformidade" method="POST" action="validar_nao_conformidade.php" style="margin-top: 1%">
 			<div class="form-group row border">
 				<label class="col-sm-2 col-form-label" style="margin-top: 1%" for="tipo">Tipo de não-conformidade:</label>
 				<div class="col-sm-10" style="margin: 1% 0">
@@ -18,14 +18,22 @@
 			</div>
 
 		<div class="form-group row border">
-			<label class="col-sm-2 col-form-label" style="margin-top: 1%" for="comment">Descrição:</label>
+			<label class="col-sm-2 col-form-label" style="margin-top: 1%" for="descricao">Descrição:</label>
 			<div class="col-sm-10" style="margin: 1% 0">
-				<textarea class="form-control"  style="resize:none;" rows="5" id="descricao"></textarea>
+				<textarea class="form-control" style="resize:none;" rows="5" id="descricao" name="descricao"></textarea>
 			</div>
 		</div>
 
 		<div class="form-group" align="right">
-			<button  type="submit" class= "btn btn-primary  col-md-2">Enviar</button>
+			<?php
+				if(	isset($_SESSION['msg_descricao'])){
+					echo $_SESSION['msg_descricao'];
+					unset($_SESSION['msg_descricao']);
+				}
+			?>
+			<button  type="submit" class= "btn btn-primary col-md-2">Enviar</button>
+			<a href="index.php" class="btn btn-secondary col-md-2">Voltar</a>
+			
 		</div>
 </form>
 

@@ -12,21 +12,16 @@
 		$setor = $_POST['setor'];
 
 		$novoFuncionario = new Usuario();
-		echo $usuario;
-		echo "<br>";
-		echo $email;
-		echo "<br>";
-		echo $novoFuncionario->setVerificarCadastro($pdo, $usuario, $email);
-		echo $novoFuncionario['usuario'];
-		/*if($novoFuncionario->setVerificarCadastro($pdo, $_POST['usuario'], $_POST['email']) > 0){
-			echo "<script> history.go(-1) </script>";
 
-			$_SESSION['msg_cadUser'] = "<p style='color: red;'>Usuário e/ou e-mail já cadastrado(s).</p>";
+		if($novoFuncionario->setVerificarCadastro($pdo, $usuario, $email) > 0){ /* Verifica se o usuário e/ou e-mail já está cadastrado */
+			
+			$_SESSION['msg_nome_email'] = "<p style='color: red;'>Usuário e/ou e-mail já cadastrado(s).</p>";
+			header("Location: cadastrar.php");
 		}else{
 
-			if(strlen($_POST['usuario']) < 5){
-				echo "<script> history.go(-1) </script>";
+			if(strlen($_POST['usuario']) < 5){ /* Se o número de caracteres for menor que 5, dá a mensagem de erro */
 				$_SESSION['msg_cadNomeUser'] = "<p style='color: red;'>Preencha o campo usuário com pelo menos 5 caracteres.</p>";
+				header("Location: cadastrar.php");
 			}
 
 			if(isset($_POST['senha']) && isset($_POST['csenha'])){
@@ -34,15 +29,10 @@
 					echo "<p style='color: red;'>Preencha as senhas corretamente.</p>";
 				}
 			}
-		}*/
+		}
 
 	}else{
-		$usuario = "";
-		$nome = "";
-		$email = "";
-		$cargo = "";
-		$senha = "";
-		$setor = "";
+		header("Location: cadastrar.php");
 	}
 
 		/*if(isset($_POST['senha'])){	// <- Verifica se o usuário clicou no botão "cadastrar".

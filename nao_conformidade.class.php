@@ -19,12 +19,19 @@ class NaoConformidade{
 	}
 
 
-	public function setAbrirNaoConformidade($pdo, $descricao, $tipo, $status, $idUsuario){
-		$stmt = $pdo->prepare('INSERT INTO nao_conformidade(descricao, tipo, status, idUsuario) VALUES (?, ?, ?, ?)');
+	public function setAbrirNaoConformidade($pdo, $descricao, $tipo, $status, $dataAbertura, $idUsuario){
+		$stmt = $pdo->prepare('INSERT INTO nao_conformidade(descricao, tipo, status, dataAbertura, idUsuario) VALUES (?, ?, ?, ?, ?)');
 		$stmt->bindParam(1, $descricao, PDO::PARAM_STR);
 		$stmt->bindParam(2, $tipo, PDO::PARAM_STR);
 		$stmt->bindParam(3, $status, PDO::PARAM_STR);
-		$stmt->bindParam(3, $idUsuario, PDO::PARAM_STR);
+		$stmt->bindParam(4, $dataAbertura, PDO::PARAM_STR);
+		$stmt->bindParam(5, $idUsuario, PDO::PARAM_STR);
+		
+		if($stmt->execute()){
+			return "ok.";
+		}else{
+			return "Erro.";
+		}
 	}
 
 
