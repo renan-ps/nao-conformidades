@@ -22,20 +22,23 @@
 						<div class="card-body">
 							<p class="card-text"><?php echo $row['descricao']; ?></p>
 
-							
-							<!-- APROVAR -->
-							<form style="float: right; "action="validar_aprovacao_nao_conformidade.php" method="POST">
+						</div>
+
+						<div class="card-footer text-muted">
+    					<p style="float: left;"><?php echo $row['dataAbertura']; ?></p>
+    					<!-- APROVAR -->
+							<form style="float: right;" action="validar_aprovacao_nao_conformidade.php" method="POST">
 								<input type="hidden" id="idNaoConformidade" name="idNaoConformidade" value="<?php $row['idNao_conformidade']; ?>">
 								<input type="hidden" id="descricao" name="descricao" value="<?php $row['descricao']; ?>">
 								<input type="hidden" id="tipo" name="tipo" value="<?php $row['tipo']; ?>">
 								<input type="hidden" id="status" name="status" value="<?php $row['status']; ?>">
 								<input type="hidden" id="dataAbertura" name="dataAbertura" value="<?php $row['dataAbertura']; ?>">
 								<input type="hidden" id="idUsuario" name="idUsuario" value="<?php $row['idUsuario']; ?>">
-								<button type="submit" class="btn btn-primary">Aprovar</button>
+								<button type="submit" class="btn btn-success">Aprovar</button>
 							</form>
 
 							<!-- REJEITAR -->
-							<form style="float: right; " action="validar_aprovacao_nao_conformidade.php" method="POST">
+							<form style="float: right;" action="validar_rejeicao_nao_conformidade.php" method="POST">
 								<input type="hidden" id="idNaoConformidade" name="idNaoConformidade" value="<?php $row['idNao_conformidade']; ?>">
 								<input type="hidden" id="descricao" name="descricao" value="<?php $row['descricao']; ?>">
 								<input type="hidden" id="tipo" name="tipo" value="<?php $row['tipo']; ?>">
@@ -44,8 +47,7 @@
 								<input type="hidden" id="idUsuario" name="idUsuario" value="<?php $row['idUsuario']; ?>">
 								<button type="submit" class="btn btn-danger">Rejeitar</button>
 							</form>
-							
-						</div>
+  					</div>
 				</div>
 		<?php
 			}
