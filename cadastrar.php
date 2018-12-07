@@ -96,7 +96,7 @@
 				?>
 
 				<div class="form-group">
-				<button type="submit" class="btn btn-primary btn-lg btn-block" onClick="return validar()">Cadastrar usuário</button>
+				<button type="submit" class="btn btn-primary btn-lg btn-block">Cadastrar usuário</button>
 
 
 				</div>

@@ -2,6 +2,7 @@
 class NaoConformidade{
 
 	/* não-conformidade */
+	private $idNaoConformidade;
 	private $descricao;
 	private $tipo;
 	private $status;
@@ -37,10 +38,26 @@ class NaoConformidade{
 		if($setorUsuario == 6){
 			$stmt = $pdo->prepare('SELECT * FROM nao_conformidade ORDER BY dataAbertura DESC');
 			$stmt->execute();
-		}
+			$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			return $rows;
+			/*foreach ($row as $rows){
+				$this->setIDNaoConformidade($row['idNao_Conformidade']);
+			}*/
 
+			
+		}
 	}
 
+	public function setIDNaoConformidade($idNaoConformidade){
+		$this->idNaoConformidade = $idNaoConformidade;
+	}
+
+	public function getIDNaoConformidade(){
+		return $this->idNaoConformidade;
+	}
 
 }
+
+
+
 ?>
