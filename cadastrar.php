@@ -89,21 +89,19 @@
 				<input type="hidden" id="validador" name="validador" value="1">
 
 				<?php
-					if(isset($_SESSION['msg_nome_email'])){
-						echo $_SESSION['msg_nome_email'];
-						unset($_SESSION['msg_nome_email']);
-					}
-				?>
-				<?php
-					if(isset($_SESSION['msg_nome_email'])){
-						echo $_SESSION['msg_nome_email'];
-						unset($_SESSION['msg_nome_email']);
+					if(isset($_SESSION['msg_erro_cadastro'])){
+						echo $_SESSION['msg_erro_cadastro'];
+						unset($_SESSION['msg_erro_cadastro']);
 					}
 				?>
 
 				<div class="form-group">
 				<button type="submit" class="btn btn-primary btn-lg btn-block" onClick="return validar()">Cadastrar usuário</button>
+
+
 				</div>
+
+				<a href="index.php" class="btn btn-secondary btn-lg btn-block">Voltar</a>
 
 			</form>
 		</div>

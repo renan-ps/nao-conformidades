@@ -8,13 +8,13 @@
 	}else{
 		$tipo = $_POST['tipo'];
 		$descricao = $_POST['descricao'];
-		$status = "Aberta";
+		$status = "Aguardando validação";
 		$idUsuario = $_SESSION['idUsuario'];
 		$dataAbertura = "CURRENT_DATE";
 
 		$nao_conformidade = new NaoConformidade();
 
-		echo $nao_conformidade->setAbrirNaoConformidade($pdo, $descricao, $tipo, $status, $dataAbertura, $idUsuario);
+		echo $nao_conformidade->setAbrirNaoConformidade($pdo, $descricao, $tipo, $status, $idUsuario);
 		$_SESSION['msg_descricao'] = "<p style='color: green'>Não conformidade cadastrada com sucesso. Aguarde validação.</p>";
 		header('location: abrir_nao_conformidade.php');
 	}
