@@ -6,9 +6,9 @@
 	$idUsuario = $_SESSION['idUsuario'];
 	$idSetor = $_SESSION['setor'];
 	
-	$nao_conformidade = new NaoConformidade;
+	$nao_conformidades = new NaoConformidade;
 
-	$rows = $nao_conformidade->getListarNaoConformidades($pdo, $idUsuario, $idSetor);
+	$rows = $nao_conformidades->getListarNaoConformidades($pdo, $idUsuario, $idSetor);
 	?>
 	<div class="row" style="margin-top: 2%;">
 		<div class="col-12">
@@ -21,30 +21,17 @@
 						</div>
 						<div class="card-body">
 							<p class="card-text"><?php echo $row['descricao']; ?></p>
-
 						</div>
 
 						<div class="card-footer text-muted">
     					<p style="float: left;"><?php echo $row['dataAbertura']; ?></p>
+
     					<!-- APROVAR -->
-							<form style="float: right;" action="validar_aprovacao_nao_conformidade.php" method="POST">
-								<input type="hidden" id="idNaoConformidade" name="idNaoConformidade" value="<?php $row['idNao_conformidade']; ?>">
-								<input type="hidden" id="descricao" name="descricao" value="<?php $row['descricao']; ?>">
-								<input type="hidden" id="tipo" name="tipo" value="<?php $row['tipo']; ?>">
-								<input type="hidden" id="status" name="status" value="<?php $row['status']; ?>">
-								<input type="hidden" id="dataAbertura" name="dataAbertura" value="<?php $row['dataAbertura']; ?>">
-								<input type="hidden" id="idUsuario" name="idUsuario" value="<?php $row['idUsuario']; ?>">
-								<button type="submit" class="btn btn-success">Aprovar</button>
-							</form>
+							<a style="float: right;" href="validar_aprovacao_nao_conformidade.php?id=<?php echo $row['idNao_conformidade']; ?>" class="btn btn-success">Aprovar</a>
 
 							<!-- REJEITAR -->
 							<form style="float: right;" action="validar_rejeicao_nao_conformidade.php" method="POST">
 								<input type="hidden" id="idNaoConformidade" name="idNaoConformidade" value="<?php $row['idNao_conformidade']; ?>">
-								<input type="hidden" id="descricao" name="descricao" value="<?php $row['descricao']; ?>">
-								<input type="hidden" id="tipo" name="tipo" value="<?php $row['tipo']; ?>">
-								<input type="hidden" id="status" name="status" value="<?php $row['status']; ?>">
-								<input type="hidden" id="dataAbertura" name="dataAbertura" value="<?php $row['dataAbertura']; ?>">
-								<input type="hidden" id="idUsuario" name="idUsuario" value="<?php $row['idUsuario']; ?>">
 								<button type="submit" class="btn btn-danger">Rejeitar</button>
 							</form>
   					</div>
@@ -59,6 +46,6 @@
 <?php
 	include "footer.php";
 }else{
-	header("Location: login.php");
+	
 }
 ?>

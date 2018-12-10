@@ -44,16 +44,84 @@ class NaoConformidade{
 				$this->setIDNaoConformidade($row['idNao_Conformidade']);
 			}*/
 
-			
 		}
 	}
 
+	public function getExibirNaoConformidade($pdo, $idNaoConformidade){
+		$stmt = $pdo->prepare('SELECT * FROM nao_conformidade WHERE idNao_conformidade = ?');
+		$stmt->bindParam(1, $idNaoConformidade, PDO::PARAM_STR);
+		$stmt->execute();
+		if($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+			$this->setIDNaoConformidade($row['idNao_conformidade']);
+			$this->setDescricao($row['descricao']);
+			$this->setTipo($row['tipo']);
+			$this->setStatus($row['status']);
+			$this->setDataAbertura($row['dataAbertura']);
+			$this->setDataFechamento($row['dataFechamento']);
+		}
+	}
+
+	/*ID NÃO CONFORMIDADE*/
 	public function setIDNaoConformidade($idNaoConformidade){
 		$this->idNaoConformidade = $idNaoConformidade;
 	}
 
 	public function getIDNaoConformidade(){
 		return $this->idNaoConformidade;
+	}
+
+	/*DESCRIÇÃO*/
+	public function setDescricao($descricao){
+		$this->descricao = $descricao;
+	}
+
+	public function getDescricao(){
+		return $this->descricao;
+	}
+
+	/*TIPO*/
+	public function setTipo($tipo){
+		$this->tipo = $tipo;
+	}
+
+	public function getTipo(){
+		return $this->tipo;
+	}
+
+	/*STATUS*/
+	public function setStatus($status){
+		$this->status = $status;
+	}
+
+	public function getStatus(){
+		return $this->status;
+	}
+
+	/*dataAbertura*/
+	public function setDataAbertura($dataAbertura){
+		$this->dataAbertura = $dataAbertura;
+	}
+
+	public function getDataAbertura(){
+		return $this->dataAbertura;
+	}
+
+	/*dataFechamento*/
+	public function setDataFechamento($dataFechamento){
+		$this->dataFechamento = $dataFechamento;
+	}
+
+	public function getDataFechamento(){
+		return $this->dataFechamento;
+	}
+
+	/*usuario*/
+	public function setUsuario($usuario){
+		$this->usuario = $usuario;
+	}
+
+	public function getUsuario(){
+		return $this->usuario;
 	}
 
 }

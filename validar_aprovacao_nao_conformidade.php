@@ -1,16 +1,20 @@
 <?php 
 	include "header.php";
+	require "nao_conformidade.class.php"
+	if($_SESSION['setor'] == 6){
 
-	$idNaoConformidade = $_POST['idNaoConformidade'];
-	$descricao = $_POST['descricao'];
-	$tipo = $_POST['tipo'];
-	$status = $_POST['status'];
-	$dataAbertura = $_POST['dataAbertura'];
-	$idUsuario = $_POST['idUsuario'];
-
+	$idNaoConformidade = $_GET['id'];
+	
+	$nao_conformidade = new NaoConformidade();
+	$nao_conformidade->
 ?>
+
+
 
 
 <?php
 	include "footer.php";
+}else{
+	header("Location: index.php");
+}
 ?>

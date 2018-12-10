@@ -1,5 +1,7 @@
 <?php
 	include "header.php";
+	if(!isset($_SESSION['logado'])){
+
 ?>
 		<form class="col-md-4 form-login" style="margin-top: 2%" action="logar.php" method = "post">
 			<div class="form-group">
@@ -20,4 +22,7 @@
 		</form>
 <?php
 	include "footer.php";
+}else{
+	header('location: index.php');
+}
 ?>
