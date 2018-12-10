@@ -69,6 +69,24 @@ class Usuario {
 		}
 	}
 
+	public function getVerificarUsuario($pdo, $idUsuario){
+		$stmt = $pdo->prepare('SELECT nome, email FROM usuarios WHERE idUsuario = ?');
+		$stmt->bindParam(1, $idUsuario, PDO::PARAM_STR);
+		$stmt->execute();
+		if($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+			$this->setNome($row['nome']);
+			$this->setEmail($row['email']);
+		}
+	}
+
+	public function getListarSetores($pdo){
+		$stmt = $pdo->prepare('SELECT * FROM setores');
+		$stmt->execute();
+		$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		return $rows;
+	}
+
+
 	//Sets básicos
 	public function setUsuario($usuario){
 		$this->usuario = $usuario;

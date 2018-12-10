@@ -8,7 +8,7 @@
 	}else{
 		$tipo = $_POST['tipo'];
 		$descricao = $_POST['descricao'];
-		$status = "Aguardando validação";
+		$status = 1;
 		$idUsuario = $_SESSION['idUsuario'];
 		$dataAbertura = "CURRENT_DATE";
 

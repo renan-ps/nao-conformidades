@@ -3,29 +3,18 @@
 	if($_SESSION['logado'] == true){
 ?>
 <div class="row" style="margin-top: 2%;">
-	<div class="col-3" style="border: 1px red solid">
-		<nav class="menu_index">
-			<ul>
-				<li>
-					<a href="abrir_nao_conformidade.php">Abrir não-conformidade</a>
-				</li>
-				<li>
-					<a href="listar_nao_conformidades.php">Listar não-conformidades</a>
-				</li>
-				<?php
-					if($_SESSION['setor'] == 1){
-				?>
-				<li>
-					<a href="cadastrar.php">Cadastrar usuário</a>
-				</li>
-				<?php
-					}
-				?>
-				<li>
-					<a href="logout.php">Logout</a>
-				</li>
-			</ul>
+	<div class="col-3">
+		<nav class="nav flex-column">
+			<a class="nav-link active" href="abrir_nao_conformidade.php">Abrir não-conformidade</a>
+			<a class="nav-link" href="listar_nao_conformidades.php">Listar não-conformidades</a>
+			<?php
+				if($_SESSION['setor'] == 1){
+			?>
+			<a class="nav-link" href="cadastrar.php">Cadastrar usuário</a>
+		<?php } ?>
+			<a class="nav-link" href="logout.php">Logout</a>
 		</nav>
+
 	</div>
 
 	<div class="col-9">
